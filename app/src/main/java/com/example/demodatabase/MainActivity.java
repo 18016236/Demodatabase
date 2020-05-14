@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // Insert a task
                 ArrayList<String> data = db.getTaskContent();
+                ArrayList<Task> newtasks = db.getTasks();
                 tasks = db.getTasks();
 
 
@@ -70,8 +71,13 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("Database Content", i +". "+data.get(i));
                     txt += i + ". " + data.get(i) + "\n";
                 }
-                aa.notifyDataSetChanged();
                 tvResults.setText(txt);
+
+                tasks.clear();
+                for (int i=0;i<newtasks.size();i++){
+                    tasks.add(newtasks.get(i));
+                }
+                aa.notifyDataSetChanged();
             }
         });
 
